@@ -49,8 +49,8 @@ async def add_todo(todo: Todo) -> dict:
 )
 async def edit_todo(todo_title: str, desc: TodoUpdate) -> dict:
     """Edit a todo."""
-    desc = desc.dict()["description"]
-    response = await update_todo(todo_title, desc)
+    update_desc = desc.dict()["description"]
+    response = await update_todo(todo_title, update_desc)
     if response:
         return response
     raise HTTPException(
@@ -59,7 +59,7 @@ async def edit_todo(todo_title: str, desc: TodoUpdate) -> dict:
     )
 
 
-@todos_router.delete("/delete/{todo_title")
+@todos_router.delete("/delete/{todo_title}")
 async def delete_todo(todo_title: str) -> str:
     """Remove a todo by given title."""
     response = await remove_todo(todo_title)

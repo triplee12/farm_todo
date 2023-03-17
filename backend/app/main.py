@@ -5,14 +5,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from .todos import todos_router
 
 app: FastAPI = FastAPI()
-origins: list[str] = ["http://127.0.0.1:3000",]
+origins: list[str] = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 
